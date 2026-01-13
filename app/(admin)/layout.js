@@ -1,5 +1,6 @@
 import "../globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import { Roboto, Work_Sans } from "next/font/google";
 
 const workSans = Work_Sans({

@@ -1,30 +1,30 @@
 import cloudinary from "@/lib/cloudinary.js";
 import { connectDB } from "@/lib/db.js";
-import { BannerData } from "@/models/HomeModule/Homesec.js";
+import { DesignData } from "@/models/HomeModule/Homesec.js";
 import { NextResponse } from "next/server";
 
-export async function GET(req, { params }) {
+export async function GET({ params }) {
   try {
     await connectDB();
-    const { bannerid } = params;
-    // console.log(bannerid)
+    const { designid } = params;
+    // console.log(designid)
 
-    const bannerdata = await BannerData.findById(bannerid);
+    const Designdata = await DesignData.findById(designid);
 
-    if (!bannerdata) {
+    if (!Designdata) {
       return NextResponse.json({ message: "User Data Not Found" });
     }
-    return NextResponse.json({ success: true, data: bannerdata }, {status: 200});
+    return NextResponse.json({ success: true, data: Designdata });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: "Server Error" }, {status: 500});
+    return NextResponse.json({ message: "Server Error" });
   }
 }
 
 export async function PUT(req, { params }) {
   try {
     await connectDB();
-    const { bannerid } = params;
+    const { designid } = params;
 
     const formData = await req.formData();
     const updatedPayload = {};
@@ -33,16 +33,14 @@ export async function PUT(req, { params }) {
     if (formData.get("heading"))
       updatedPayload.heading = formData.get("heading");
 
-    if (formData.get("description"))
-      updatedPayload.description = formData.get("description");
+    if (formData.get("subheading"))
+      updatedPayload.subheading = formData.get("subheading");
 
    
     const imageFields = [
-      "bannerimg1",
-      "bannerimg2",
-      "bannerimg3",
-      "bannerimg4",
-      "bannerimg5",
+      "designimg1",
+      "designimg2",
+      "designimg3"
     ];
 
     for (const field of imageFields) {
@@ -54,7 +52,7 @@ export async function PUT(req, { params }) {
 
         const uploadResult = await new Promise((resolve, reject) => {
           cloudinary.uploader.upload_stream(
-            { folder: "bannerimg" },
+            { folder: "Designs" },
             (error, result) => {
               if (error) reject(error);
               else resolve(result);
@@ -66,15 +64,15 @@ export async function PUT(req, { params }) {
       }
     }
 
-    const updatedData = await BannerData.findByIdAndUpdate(
-      bannerid,
+    const updatedData = await DesignData.findByIdAndUpdate(
+      designid,
       { $set: updatedPayload },
       { new: true }
     );
 
     return NextResponse.json({
       success: true,
-      message: "Banner Updated Successfully",
+      message: "Design Updated Successfully",
       data: updatedData,
     });
 

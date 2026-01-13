@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^36.0.1",
+    "@ckeditor/ckeditor5-react": "^5.1.0",
     "aos": "^2.3.4",
     "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",

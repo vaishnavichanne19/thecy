@@ -455,6 +455,7 @@ why choose us css
 .horizontal {
   display: flex;
   height: 100%;
+  width: max-content;
 }
 
 .horizontal > div {
@@ -4902,6 +4903,11 @@ Web Designing css
 /******************************
  Admin Panel Css 
  ******************************/
+ .admin-panel-section img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+ }
 .sidebar {
   background-color: var(--primary-color);
   height: 100%;
@@ -4909,26 +4915,74 @@ Web Designing css
   top: 0;
   left: 0;
   width: 18%;
+  overflow-y: auto;
 }
 .sidebar-ul ul a {
   text-decoration: none;
 }
-.sidebar-ul ul .active {
+.sidebar-ul ul  .active {
     background-color: #fff;
   color: var(--primary-color);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  padding: 1rem 2rem;
 }
-.sidebar-ul ul li {
+
+.sidebar-ul ul .active-li {
   color: white;
   font-size: 2.1rem;
   font-weight: 600;
   margin: 0.5rem 0;
   padding: 1rem 2rem;
 }
-.sidebar-ul ul li:hover {
+.sidebar-ul ul .active-li:hover {
   background-color: #fff;
   color: var(--primary-color);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
 }
+.sidebar-ul-ul .open {
+  opacity: 1;
+  max-height: 500px;
+   overflow: hidden;
+  transition: all 0.3s ease;
+}
+.sidebar-ul-ul .open-li{
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.sidebar-ul-ul li {
+  color: var(--primary-color);
+  list-style-type: disc;
+    font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.sidebar-ul-ul ul a .open-active {
+text-decoration: underline;
+color: #3e3ef1;
+}
+.admin-panel-p {
+    font-size: 1.4rem !important;
+  font-weight: unset !important;
+  line-height: unset;
+  margin: 0 !important;
+}
+/******************************
+ Admin Panel Edit Css 
+ ******************************/
+ .admin-panel-edit-page  {
+  border-radius: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  margin: 5rem auto;
+ }
+ .admin-panel-edit-page input {
+  font-size: 1.4rem;
+ }
